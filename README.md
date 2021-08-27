@@ -1,2 +1,2 @@
 # blaze
-blaze project
+blaze project - free program to quick search someone.
