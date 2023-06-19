@@ -27,7 +27,7 @@ def main():
         try:
             if server['online']:
                 print(f"\nServer: {search}")
-                print(f"IPv4: {server['ip']}")
+                print(f"IPv4: {server['ip']}:{server['port']}")
                 print(f"Status: {server['online']}")
                 print(f"Players: {server['players']['online']} / {server['players']['max']}\n")
 
@@ -39,7 +39,7 @@ def main():
 
             else:
                 print(f"\nServer: {search}")
-                print(f"IPv4: {server['ip']}")
+                print(f"IPv4: {server['ip']}:{server['port']}")
                 print(f"Status: {server['online']}")
 
                 system("pause >nul")
@@ -58,9 +58,7 @@ def main():
         time.sleep(2.2)
         main()
 
-    history = requests.session().get(f"https://api.mojang.com/user/profiles/{fetch['id']}/names").json()
     friends = requests.session().get(f"https://api.namemc.com/profile/{fetch['id']}/friends").json()
-
 
     try:
         skin = requests.session().get(f"https://crafatar.com/skins/{fetch['id']}").url
@@ -70,18 +68,8 @@ def main():
 
     print(f"\nUUID: {fetch['id']}")
     print(f"Current username: {fetch['name']}")
-    print(f"Original username: {history[0]['name']}")
-
-    try:
-        x = 0
-        print("\nLegacy:")
-        while True:
-            print(f"{x + 1}: {history[x]['name']}")
-            x += 1
-
-    except:
-        print("\nProperties:")
-        print(f"{skin}")
+    print("\nProperties:")
+    print(f"{skin}")
 
     try:
         d = 0
